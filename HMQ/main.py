@@ -26,9 +26,9 @@ def get_arguments():
     parser = argparse.ArgumentParser(description='HMQ Retraining for ImageNet Classification')
 
     # General
-    parser.add_argument('--log_dir', type=str, default='/data/projects/swat/users/haih/logs/',
+    parser.add_argument('--log_dir', type=str, default='/home/vchua/official_nncf/ai-research/HMQ/logs',
                         help='Weights and Bias logging folder path')
-    parser.add_argument('--data_dir', type=str, default='/local_datasets/image_net/', help='Dataset folder')
+    parser.add_argument('--data_dir', type=str, default='/data/dataset/imagenet/ilsvrc2012/torchvision', help='Dataset folder')
     parser.add_argument('--tag', type=str, default='', help='Tagging string')
     parser.add_argument('--num_workers', type=int, default=8, help='Number of workers for dataset reading')
     parser.add_argument('--dataset', type=str, default='ImageNet', help='Dataset name', choices=['CIFAR10', 'ImageNet'])
@@ -100,7 +100,7 @@ def base_runner():
     if cc.get('local_rank') == 0:
         wandb.init(project=PROJECT_NAME, dir=cc.get('log_dir'))
         wandb.config.update(cc)  # adds all of the arguments as config variables
-        print(f"W & B Log Dir:{wandb.wandb_dir()}")
+        # print(f"W & B Log Dir:{wandb.wandb_dir()}")
     print("-" * 100)
     #######################################
     # Setting Dataset
